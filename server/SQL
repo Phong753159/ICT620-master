@@ -1,0 +1,24 @@
+CREATE DATABASE medicine_interactions;
+
+CREATE TABLE medicines (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    mode_of_action TEXT,
+    indications TEXT[],
+    precautions TEXT[],
+    adverse_effects TEXT[],
+    dosage JSONB,
+    counselling TEXT[],
+    practice_points TEXT[],
+    products TEXT[],
+    alert TEXT
+);
+
+CREATE TABLE interactions (
+    id SERIAL PRIMARY KEY,
+    medicine1_id INT REFERENCES medicines(id),
+    medicine2_id INT REFERENCES medicines(id),
+    interaction_description TEXT
+);
+
